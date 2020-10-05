@@ -12,15 +12,8 @@ RUN composer install \
     --no-scripts \
     --prefer-dist
 
-RUN apt-get upgrade -y \
-    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g react-tools 
-
 RUN php artisan key:generate
 RUN php artisan migrate
 RUN chmod -R 777 storage
 RUN a2enmod rewrite
 RUN service apache2 restart
-RUN npm install
-RUN npm run dev
